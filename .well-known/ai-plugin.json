@@ -9,7 +9,7 @@
     },
     "api": {
         "type": "openapi",
-        "url": "https://api.coingecko.com/api/v3/swagger.json"
+        "url": "https://currency-convert-chatgpt-plugin.vercel.app/openapi.yaml"
     },
     "logo_url": "https://example.com/logo.png",
     "contact_email": "support@example.com",

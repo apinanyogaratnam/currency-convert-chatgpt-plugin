@@ -1,6 +1,7 @@
+import json
 import requests
 
-from flask import Flask, request
+from flask import Flask, Response, jsonify, request
 from flask_cors import CORS
 
 from dotenv import load_dotenv
@@ -32,6 +33,21 @@ def convert():
         return {"result": result}
     except Exception as e:
         return {"error": str(e)}
+
+
+@app.get("/.well-known/ai-plugin.json")
+def plugin_manifest():
+    host = request.headers['Host']
+    with open("./.well-known/ai-plugin.json") as f:
+        text = f.read()
+        return jsonify(json.loads(text))
+
+@app.get("/openapi.yaml")
+def openapi_spec():
+    host = request.headers['Host']
+    with open("openapi.yaml") as f:
+        text = f.read()
+        return Response(text, mimetype="text/yaml")
 
 
 def get_exchange_rate(from_currency, to_currency, amount):
