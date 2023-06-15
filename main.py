@@ -41,10 +41,6 @@ def convert():
 @app.get("/.well-known/<path:filename>")
 def plugin_manifest_1(filename):
     return send_from_directory(well_known_dir, filename)
-    host = request.headers['Host']
-    with open("./.well-known/ai-plugin.json") as f:
-        text = f.read()
-        return jsonify(json.loads(text))
 
 
 @app.get("/.well-known/ai-plugin.json")
