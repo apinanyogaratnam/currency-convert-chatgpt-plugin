@@ -57,9 +57,6 @@ def plugin_manifest():
 @app.get("/openapi.yaml")
 def openapi_spec():
     host = request.headers['Host']
-    # with open("openapi.yaml") as f:
-    #     text = f.read()
-    #     return Response(text, mimetype="text/yaml")
     with open(openapi_dir) as f:
         text = f.read()
         return Response(text, mimetype="text/yaml")
