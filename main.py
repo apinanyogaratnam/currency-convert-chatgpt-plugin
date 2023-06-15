@@ -1,7 +1,7 @@
 import json
 import requests
 
-from flask import Flask, Response, jsonify, request
+from flask import Flask, Response, jsonify, request, send_from_directory
 from flask_cors import CORS
 
 from dotenv import load_dotenv
@@ -15,6 +15,9 @@ if os.path.exists(dotenv_path):
 
 app = Flask(__name__)
 CORS(app)
+
+well_known_dir = os.path.join(app.root_path, ".well-known")
+openapi_dir = os.path.join(app.root_path, "openapi.yaml")
 
 
 @app.route("/")
@@ -35,6 +38,15 @@ def convert():
         return {"error": str(e)}
 
 
+@app.get("/.well-known/<path:filename>")
+def plugin_manifest_1(filename):
+    return send_from_directory(well_known_dir, filename)
+    host = request.headers['Host']
+    with open("./.well-known/ai-plugin.json") as f:
+        text = f.read()
+        return jsonify(json.loads(text))
+
+
 @app.get("/.well-known/ai-plugin.json")
 def plugin_manifest():
     host = request.headers['Host']
@@ -45,7 +57,10 @@ def plugin_manifest():
 @app.get("/openapi.yaml")
 def openapi_spec():
     host = request.headers['Host']
-    with open("openapi.yaml") as f:
+    # with open("openapi.yaml") as f:
+    #     text = f.read()
+    #     return Response(text, mimetype="text/yaml")
+    with open(openapi_dir) as f:
         text = f.read()
         return Response(text, mimetype="text/yaml")
 
