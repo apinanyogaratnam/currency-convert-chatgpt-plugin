@@ -1,6 +1,6 @@
 {
     "schema_version": "v1",
-    "name_for_human": "Currency Converter Plugin",
+    "name_for_human": "Currency Converter",
     "name_for_model": "currencyconverter",
     "description_for_human": "Convert currencies using the CoinGecko API.",
     "description_for_model": "Help the user convert currencies using the CoinGecko API.",
