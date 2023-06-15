@@ -9,7 +9,7 @@
     },
     "api": {
         "type": "openapi",
-        "url": "http://localhost:8000/openapi.yaml"
+        "url": "https://currency-convert-chatgpt-plugin.vercel.app/openapi.yaml"
     },
     "logo_url": "https://cdn-icons-png.flaticon.com/512/71/71123.png",
     "contact_email": "support@example.com",
