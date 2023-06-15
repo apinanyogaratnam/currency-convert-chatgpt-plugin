@@ -76,5 +76,4 @@ def get_exchange_rate(from_currency, to_currency, amount):
 
     data = response.json()
     conversion_rate = data[from_currency][to_currency]
-    converted_amount = amount * conversion_rate
-    return converted_amount
+    return amount * conversion_rate
