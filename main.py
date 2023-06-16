@@ -58,6 +58,13 @@ def openapi_spec():
         return Response(text, mimetype="text/yaml")
 
 
+@app.get("/license")
+def license():
+    with open("./LICENSE") as f:
+        text = f.read()
+        return Response(text, mimetype="text/plain")
+
+
 def get_exchange_rate(from_currency, to_currency, amount):
     url = "https://api.coingecko.com/api/v3/simple/price"
     params = {
